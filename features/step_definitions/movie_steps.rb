@@ -28,18 +28,21 @@ end
 
 
 
-When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
+Given /I check the following ratings: (.*)/ do |rating_list|
   rating_list.split(",").each do |field|
     field = field.strip
-    if uncheck == "un"
-       step %Q{I uncheck "ratings_#{field}"}
-       step %Q{the "ratings_#{field}" checkbox should not be checked}
-    else
-      step %Q{I check "ratings_#{field}"}
-      step %Q{the "ratings_#{field}" checkbox should be checked}
-    end
+    check("ratings_#{field}")
+    #if uncheck == "un"
+    #   step %Q{I uncheck "ratings_#{field}"}
+    #   step %Q{the "ratings_#{field}" checkbox should not be checked}
+    #else
+    #  step %Q{I check "ratings_#{field}"}
+    #  step %Q{the "ratings_#{field}" checkbox should be checked}
+    #end
   end
 end
+
+And /I (un)?check the other ratings: (.*)
 
 Then /^I should see the following ratings: (.*)/ do |rating_list|
   ratings = page.all("table#movies tbody tr td[2]").map! {|t| t.text}

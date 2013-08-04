@@ -28,5 +28,6 @@ Scenario: sort movies alphabetically
 
 Scenario: sort movies in increasing order of release date
   When I follow "Release Date"
-    Then I should see "2001: A Space Odyssey" before "Aladdin"
+    Then I should see "2001: A Space Odyssey" before "Raiders of the Lost Ark"
+    
 
